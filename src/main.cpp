@@ -1,36 +1,25 @@
-#include <iostream>
+// main.cpp
 #include "math/vec3.h"
-int main() {
-    std::cout << "Hello, Whitted-Style Ray Tracing!" << std::endl;
+#include "ppm_writer.h"
+#include <vector>
 
-    // TODO: Remove this test block 
-    std::cout << "============YOU NEED DELETE THIS==========="<< std::endl;
-    Vec3 a(1.0f, 2.0f, 3.0f);
-    Vec3 b(4.0f, 5.0f, 6.0f);
-    std::cout << "a: " << a << std::endl;
-    std::cout << "b: " << b << std::endl;
-    std::cout << "a + b: " << a + b << std::endl;
-    std::cout << "a - b: " << a - b << std::endl;
-    std::cout << "a * b: " << a * b << std::endl;
-    
-    std::cout << "a * 2.0f: " << a * 2.0f << std::endl;
-    std::cout << "2.0f * a: " << 2.0f * a << std::endl;
-    std::cout << "a / 2.0f: " << a / 2.0f << std::endl;
+int main()
+{
+    const unsigned int image_width = 800;
+    const unsigned int image_height = 800;
+    std::vector<Vec3> frame_buffer(image_height * 800, {0.0f, 0.0f, 0.0f});
 
-    std::cout << "a.length(): " << a.length() << std::endl;
-    std::cout << "a.lengthSquared(): " << a.lengthSquared() << std::endl;
+    for (unsigned int j = 0; j < image_height; ++j) {
+        for (unsigned int i = 0; i < image_width; ++i) {
+            const float u = float(i) / float(image_width) * 255.0f;
+            const float v = float(j) / float(image_height) * 255.0f;
+            const Vec3 color(u, v, 0.0f);
+            frame_buffer[j * image_width + i] = color;
+        }
+    }
 
-    std::cout << "unitVector(a): " << unitVector(a) << std::endl;
+    PPMWriter writer("output1.ppm", image_width, image_height);
+    writer.save(frame_buffer);
 
-    std::cout << "dot(a, b): " << dot(a, b) << std::endl;
-    std::cout << "cross(a, b): " << cross(a, b) << std::endl;
-
-    std::cout << "a.nearZero(): " << a.nearZero() << std::endl;
-
-    std::cout << "a.x(): " << a.x() << std::endl;
-    std::cout << "a.y(): " << a.y() << std::endl;
-    std::cout << "a.z(): " << a.z() << std::endl;
-
-    std::cout << "============YOU NEED DELETE THIS==========="<< std::endl;
     return 0;
 }
