@@ -7,7 +7,7 @@ int main()
 {
     const unsigned int image_width = 800;
     const unsigned int image_height = 800;
-    std::vector<Vec3> frame_buffer(image_height * 800, {0.0f, 0.0f, 0.0f});
+    std::vector<Vec3> frame_buffer(image_height * image_width, {0.0f, 0.0f, 0.0f});
 
     for (unsigned int j = 0; j < image_height; ++j) {
         for (unsigned int i = 0; i < image_width; ++i) {
