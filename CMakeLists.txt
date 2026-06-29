@@ -11,9 +11,15 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# TODO：你需要将你自行添加的 .cpp 文件添加到 SOURCE_FILES 中
-set(SOURCE_FILES 
-    src/main.cpp)
+file(GLOB_RECURSE SOURCE_FILES 
+    src/*.cpp
+)
+
+message(STATUS "========Found source files:========")
+foreach(FILE ${SOURCE_FILES})
+    message(STATUS "  ${FILE}")
+endforeach()
+message(STATUS "===================================")
 
 add_executable(whitted_ray_tracing_app ${SOURCE_FILES})
 
