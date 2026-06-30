@@ -6,13 +6,13 @@
 
 class PPMWriter {
 public:
-    PPMWriter(const std::string& fileName, unsigned int width, unsigned int height);
+    PPMWriter(const std::string& file_name, unsigned int width, unsigned int height);
     ~PPMWriter();
 
     // data component should be in the range [0, 255]
     void save(const std::vector<Vec3>& data);
 
-    void setFileName(const std::string& fileName);
+    void setFileName(const std::string& file_name);
     void setImageSize(unsigned int width, unsigned int height);
 
 private:

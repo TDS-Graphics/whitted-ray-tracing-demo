@@ -4,10 +4,10 @@
 #include <fstream>
 #include <iostream>
 
-PPMWriter::PPMWriter(const std::string& fileName, unsigned int width, unsigned int height)
+PPMWriter::PPMWriter(const std::string& file_name, unsigned int width, unsigned int height)
     : m_image_width(width),
       m_image_height(height),
-      m_file_name(fileName)
+      m_file_name(file_name)
 {}
 
 PPMWriter::~PPMWriter() = default;
@@ -42,9 +42,9 @@ void PPMWriter::save(const std::vector<Vec3>& data)
     std::cout << "Saved image to: " << m_file_name << std::endl;
 }
 
-void PPMWriter::setFileName(const std::string& fileName)
+void PPMWriter::setFileName(const std::string& file_name)
 {
-    m_file_name = fileName;
+    m_file_name = file_name;
 }
 
 void PPMWriter::setImageSize(unsigned int width, unsigned int height)
