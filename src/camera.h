@@ -5,7 +5,6 @@
 
 #include <cstdint>
 
-
 class Camera {
 public:
     Camera() = default;
