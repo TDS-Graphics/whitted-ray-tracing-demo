@@ -1,10 +1,11 @@
-#include "math/utility.h"
 #include "ppm_writer.h"
+
+#include <cstdint>
 
 #include <fstream>
 #include <iostream>
 
-PPMWriter::PPMWriter(const std::string& file_name, unsigned int width, unsigned int height)
+PPMWriter::PPMWriter(const std::string& file_name, uint32_t width, uint32_t height)
     : m_image_width(width),
       m_image_height(height),
       m_file_name(file_name)
@@ -29,13 +30,13 @@ void PPMWriter::save(const std::vector<Vec3>& data)
     ofs << "P6\n" << m_image_width << " " << m_image_height << "\n255\n";
 
     for (std::size_t i = 0; i < data.size(); ++i) {
-        unsigned char r = clamp(data[i].x(), 0.0f, 255.0f);
-        unsigned char g = clamp(data[i].y(), 0.0f, 255.0f);
-        unsigned char b = clamp(data[i].z(), 0.0f, 255.0f);
+        uint8_t r = static_cast<uint8_t>(std::clamp(data[i].x(), 0.0f, 255.0f));
+        uint8_t g = static_cast<uint8_t>(std::clamp(data[i].y(), 0.0f, 255.0f));
+        uint8_t b = static_cast<uint8_t>(std::clamp(data[i].z(), 0.0f, 255.0f));
 
-        ofs.write((const char*) (&r), 1);
-        ofs.write((const char*) (&g), 1);
-        ofs.write((const char*) (&b), 1);
+        ofs.write(reinterpret_cast<const char*>(&r), 1);
+        ofs.write(reinterpret_cast<const char*>(&g), 1);
+        ofs.write(reinterpret_cast<const char*>(&b), 1);
     }
 
     ofs.close();
@@ -47,7 +48,7 @@ void PPMWriter::setFileName(const std::string& file_name)
     m_file_name = file_name;
 }
 
-void PPMWriter::setImageSize(unsigned int width, unsigned int height)
+void PPMWriter::setImageSize(uint32_t width, uint32_t height)
 {
     m_image_width = width;
     m_image_height = height;

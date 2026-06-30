@@ -28,7 +28,7 @@ Ray Camera::getRay(float i, float j) const
     Vec3 viewport_left_top = m_position + forward - horizontal / 2.0f - vertical / 2.0f;
     Vec3 pixel_left_top = viewport_left_top + 0.5f * (pixel_delta_u + pixel_delta_v);
 
-    Vec3 pixel_center = pixel_left_top + pixel_delta_u * i + pixel_delta_v * j;
+    Vec3 pixel_center = pixel_left_top + pixel_delta_u * j + pixel_delta_v * i;
     Vec3 ray_direction = pixel_center - m_position;
 
     Ray ray{m_position, ray_direction};
@@ -61,7 +61,7 @@ uint32_t Camera::getImageHeight() const
     return m_image_height;
 }
 
-void Camera::setImageSize(unsigned int width, unsigned int height)
+void Camera::setImageSize(uint32_t width, uint32_t height)
 {
     m_image_width = width;
     m_image_height = height;

@@ -5,11 +5,12 @@
 #include "sphere.h"
 
 #include <memory>
+#include <utility>
 #include <vector>
 
 class Scene {
 public:
-    Scene(const Camera& camera)
+    explicit Scene(const Camera& camera)
         : m_camera(camera)
     {}
 
@@ -23,9 +24,9 @@ public:
         m_objects.push_back(std::move(object));
     }
 
-    void addSphere(const Vec3& center, float radius)
+    void addSphere(const Vec3& center, float radius, std::shared_ptr<const Material> material)
     {
-        m_objects.push_back(std::make_unique<Sphere>(center, radius));
+        m_objects.push_back(std::make_unique<Sphere>(center, radius, std::move(material)));
     }
 
     const std::vector<std::unique_ptr<Object>>& getObjects() const
