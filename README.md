@@ -3,7 +3,7 @@
 这是一个简单的 Whitted-Stlye Ray Tracing Renderer 可以作为 TDSG 第三阶段的参考项目。    
 如果你想跟着这个项目写可以从我们的 [框架开始](https://github.com/TDS-Graphics/whitted-ray-tracing-demo/tree/framework)    
 
-> 建议如果没有 C++ 或者其他项目构建基础的话可以选择跟着我们实现，但如果你懂的如何构建一个项目我们强行建议你自己实现，当然可以使用你熟悉的语言
+> 建议如果没有 C++ 或者其他项目构建基础的话可以选择跟着我们实现，但如果你懂的如何构建一个项目我们强烈建议你自己实现，当然可以使用你熟悉的语言
 # Build
 环境准备：
 
